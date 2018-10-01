@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PetsActivity" />
+        <activity android:name=".PetDetailsActivity"></activity>
     </application>
 
 </manifest>
