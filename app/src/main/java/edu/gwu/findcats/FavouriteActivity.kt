@@ -6,27 +6,27 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
-import kotlinx.android.synthetic.main.activity_pets.*
 import edu.gwu.findcats.R
 import edu.gwu.findcats.Item
 import edu.gwu.findcats.ItemsAdapter
 import edu.gwu.findcats.DataProvider
+import kotlinx.android.synthetic.main.activity_favourite.*
 import kotlinx.android.synthetic.main.activity_menu.*
 
 
-class PetsActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
+class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pets)
+        setContentView(R.layout.activity_favourite)
         populateItemList()
     }
 
     private fun populateItemList() {
-        val items = DataProvider.catList
+        val items = DataProvider.favouriteList
         if (items.isNotEmpty()) {
-            itemsRecyclerView.adapter = ItemsAdapter(items, this)
+            itemsRecyclerView_2.adapter = ItemsAdapter(items, this)
         }
     }
 

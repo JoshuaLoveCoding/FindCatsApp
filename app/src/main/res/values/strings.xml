@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FindCats</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_catname">CatName</string>
+    <string name="hint_gender">Gender</string>
+    <string name="hint_breed">Breed</string>
+    <string name="hint_zip">Zip</string>
+    <string name="hint_details">Details</string>
 </resources>
