@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import edu.gwu.findcats.R
 import edu.gwu.findcats.Item
 import kotlinx.android.synthetic.main.layout_list_item.view.*
@@ -17,7 +18,15 @@ class ItemsAdapter(private val items: List<Item>, private val clickListener: OnI
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Item, listener: OnItemClickListener) = with(itemView) {
             itemName.text = item.name
-            itemImage.setImageResource(item.imageId)
+            Picasso.get().load(item.imageUri).into(itemImage, object: com.squareup.picasso.Callback {
+                override fun onSuccess() {
+
+                }
+
+                override fun onError(e: java.lang.Exception?) {
+
+                }
+            })
             setOnClickListener {
                 listener.onItemClick(item, it)
             }
