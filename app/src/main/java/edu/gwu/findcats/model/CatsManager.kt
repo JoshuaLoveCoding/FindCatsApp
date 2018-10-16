@@ -1,16 +1,9 @@
 package edu.gwu.findcats.model
 
 import android.content.Context
-import android.content.res.Configuration
-import android.net.Uri
 import android.util.Log
-import android.widget.ImageView
-import com.squareup.picasso.Picasso
-import edu.gwu.findcats.DataProvider.Companion.catList
 import edu.gwu.findcats.Item
-import edu.gwu.findcats.R
 import edu.gwu.findcats.model.generatedCats.CatsResponse
-import edu.gwu.findcats.model.generatedCats.PetItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

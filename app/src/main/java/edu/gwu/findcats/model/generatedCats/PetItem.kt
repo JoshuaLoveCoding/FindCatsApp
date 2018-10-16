@@ -1,54 +1,56 @@
 package edu.gwu.findcats.model.generatedCats
 
+
 import com.squareup.moshi.Json
+
 
 data class PetItem(
 
-	@Json(name="sex")
+	@field:Json(name="sex")
 	val sex: Sex? = null,
 
-	@Json(name="description")
+	@field:Json(name="description")
 	val description: Description? = null,
 
-	@Json(name="media")
+	@field:Json(name="media")
 	val media: Media? = null,
 
-	@Json(name="shelterId")
+	@field:Json(name="shelterId")
 	val shelterId: ShelterId? = null,
 
-	@Json(name="breeds")
+	@field:Json(name="breeds")
 	val breeds: Breeds? = null,
 
-	@Json(name="size")
+	@field:Json(name="size")
 	val size: Size? = null,
 
-	@Json(name="contact")
+	@field:Json(name="contact")
 	val contact: Contact? = null,
 
-	@Json(name="lastUpdate")
+	@field:Json(name="lastUpdate")
 	val lastUpdate: LastUpdate? = null,
 
-	@Json(name="options")
+	@field:Json(name="options")
 	val options: Options? = null,
 
-	@Json(name="name")
+	@field:Json(name="name")
 	val name: Name? = null,
 
-	@Json(name="animal")
+	@field:Json(name="animal")
 	val animal: Animal? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: Id? = null,
 
-	@Json(name="mix")
+	@field:Json(name="mix")
 	val mix: Mix? = null,
 
-	@Json(name="age")
+	@field:Json(name="age")
 	val age: Age? = null,
 
-	@Json(name="shelterPetId")
+	@field:Json(name="shelterPetId")
 	val shelterPetId: ShelterPetId? = null,
 
-	@Json(name="status")
+	@field:Json(name="status")
 	val status: Status? = null
 )

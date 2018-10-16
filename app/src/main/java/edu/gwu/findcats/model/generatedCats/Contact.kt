@@ -1,30 +1,32 @@
 package edu.gwu.findcats.model.generatedCats
 
+
 import com.squareup.moshi.Json
+
 
 data class Contact(
 
-	@Json(name="zip")
+	@field:Json(name="zip")
 	val zip: Zip? = null,
 
-	@Json(name="phone")
+	@field:Json(name="phone")
 	val phone: Phone? = null,
 
-	@Json(name="address2")
+	@field:Json(name="address2")
 	val address2: Address2? = null,
 
-	@Json(name="city")
+	@field:Json(name="city")
 	val city: City? = null,
 
-	@Json(name="address1")
+	@field:Json(name="address1")
 	val address1: Address1? = null,
 
-	@Json(name="state")
+	@field:Json(name="state")
 	val state: State? = null,
 
-	@Json(name="fax")
+	@field:Json(name="fax")
 	val fax: Fax? = null,
 
-	@Json(name="email")
+	@field:Json(name="email")
 	val email: Email? = null
 )
