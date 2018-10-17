@@ -6,7 +6,7 @@ import com.squareup.moshi.Json
 
 data class PhotoItem(
 
-	@field:Json(name="$\t")
+	@field:Json(name="\$t")
 	val T: String? = null,
 
 	@field:Json(name="@size")

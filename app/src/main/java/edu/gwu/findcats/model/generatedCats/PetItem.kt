@@ -18,8 +18,8 @@ data class PetItem(
 	@field:Json(name="shelterId")
 	val shelterId: ShelterId? = null,
 
-	@field:Json(name="breeds")
-	val breeds: Breeds? = null,
+//	@field:Json(name="breeds")
+//	val breeds: Breeds? = null,
 
 	@field:Json(name="size")
 	val size: Size? = null,
@@ -30,8 +30,8 @@ data class PetItem(
 	@field:Json(name="lastUpdate")
 	val lastUpdate: LastUpdate? = null,
 
-	@field:Json(name="options")
-	val options: Options? = null,
+//	@field:Json(name="options")
+//	val options: Options? = null,
 
 	@field:Json(name="name")
 	val name: Name? = null,

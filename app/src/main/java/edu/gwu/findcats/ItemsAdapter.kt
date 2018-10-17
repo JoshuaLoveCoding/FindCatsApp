@@ -18,15 +18,7 @@ class ItemsAdapter(private val items: List<Item>, private val clickListener: OnI
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Item, listener: OnItemClickListener) = with(itemView) {
             itemName.text = item.name
-            Picasso.get().load(item.imageUri).into(itemImage, object: com.squareup.picasso.Callback {
-                override fun onSuccess() {
-
-                }
-
-                override fun onError(e: java.lang.Exception?) {
-
-                }
-            })
+            Picasso.get().load(item.imageUri).into(itemImage)
             setOnClickListener {
                 listener.onItemClick(item, it)
             }

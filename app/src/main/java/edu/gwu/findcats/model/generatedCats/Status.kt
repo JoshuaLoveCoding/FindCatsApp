@@ -12,6 +12,6 @@ data class Status(
 	@field:Json(name="message")
 	val message: Message? = null,
 
-	@field:Json(name="$\t")
+	@field:Json(name="\$t")
 	val T: String? = null
 )

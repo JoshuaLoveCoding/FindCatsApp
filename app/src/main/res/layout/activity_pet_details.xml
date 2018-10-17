@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/catImage"
@@ -41,29 +41,16 @@
         tools:text="@string/hint_gender" />
 
     <TextView
-        android:id="@+id/breedTextView"
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:text="TextView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/catImage"
-        app:layout_constraintTop_toBottomOf="@+id/genderTextView"
-        tools:text="@string/hint_breed" />
-
-    <TextView
         android:id="@+id/zipTextView"
         android:layout_width="155dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/catImage"
-        app:layout_constraintTop_toBottomOf="@+id/breedTextView"
+        app:layout_constraintTop_toBottomOf="@+id/genderTextView"
         tools:text="@string/hint_zip" />
 
     <TextView

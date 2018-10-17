@@ -22,18 +22,10 @@ class PetDetailsActivity : AppCompatActivity() {
 
 
     private fun populateDetails(item: Item?) {
-        Picasso.get().load(item?.imageUri).into(catImage, object: com.squareup.picasso.Callback {
-            override fun onSuccess() {
-                item
-            }
-
-            override fun onError(e: java.lang.Exception?) {
-
-            }
-        })
+        Picasso.get().load(item?.imageUri).into(catImage)
         nametextView.text = "Name: " + item?.name
         genderTextView.text = "Gender: " + item?.gender
-        breedTextView.text = "Breed: " + item?.breed
+
         zipTextView.text = "Zip: " + item?.zip
         detailsTextView.text = item?.details
     }

@@ -2,37 +2,28 @@ package edu.gwu.findcats
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.MenuItem
 import android.view.View
+import edu.gwu.findcats.model.PetSearchManager
 import kotlinx.android.synthetic.main.activity_pets.*
-import edu.gwu.findcats.R
-import edu.gwu.findcats.Item
-import edu.gwu.findcats.ItemsAdapter
-import edu.gwu.findcats.DataProvider
-import edu.gwu.findcats.model.CatsManager
-import edu.gwu.findcats.model.FactsManager
-import kotlinx.android.synthetic.main.activity_menu.*
-import org.jetbrains.anko.toast
 
 
-class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, CatsManager.CatsSearchCompletionListener {
-    private lateinit var catsManager: CatsManager
+class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetSearchManager.PetSearchCompletionListener {
+    private lateinit var petSearchManager: PetSearchManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets)
 
-        catsManager = CatsManager(this)
-        catsManager.catsSearchCompletionListener = this
+        petSearchManager = PetSearchManager()
+        petSearchManager.petSearchCompletionListener = this
 
         populateItemList()
     }
 
     private fun populateItemList() {
-        catsManager.searchCats("22202")
+        petSearchManager.searchPets(22202)
     }
 
     override fun onItemClick(item: Item, itemView: View) {
@@ -40,12 +31,11 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, Cats
         startActivity(detailsIntent)
     }
 
-    //API results:
-    override fun catsNotLoaded() {
-        //toast() //show some error to the user
+    override fun petsNotLoaded() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun catsLoaded(catsList: List<Item>) {
+    override fun petsLoaded(catsList: List<Item>) {
         if (catsList.isNotEmpty()) {
             itemsRecyclerView.layoutManager = LinearLayoutManager(this)
             itemsRecyclerView.adapter = ItemsAdapter(catsList, this)
