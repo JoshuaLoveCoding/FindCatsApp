@@ -32,6 +32,7 @@ class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
 
     override fun onItemClick(item: Item, itemView: View) {
         val detailsIntent = Intent(this, PetDetailsActivity::class.java)
+        detailsIntent.putExtra(getString(R.string.bundle_extra_item), item)
         startActivity(detailsIntent)
     }
 

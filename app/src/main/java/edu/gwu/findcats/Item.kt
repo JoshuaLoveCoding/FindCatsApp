@@ -10,5 +10,6 @@ class Item(
         var gender: String,
         var zip: String,
         var details: String,
-        var id: String
+        var id: String,
+        var email: String
 ) : Parcelable

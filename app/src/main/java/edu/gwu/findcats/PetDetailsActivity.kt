@@ -9,6 +9,8 @@ import com.squareup.picasso.Picasso
 import edu.gwu.findcats.R.id.titleTextView
 import kotlinx.android.synthetic.main.activity_pet_details.*
 import kotlinx.android.synthetic.main.layout_list_item.view.*
+import android.view.Menu
+import android.view.MenuItem
 
 class PetDetailsActivity : AppCompatActivity() {
     private var item: Item? = null
@@ -16,8 +18,10 @@ class PetDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet_details)
-        item = DataProvider.catList[0]
+        setSupportActionBar(menu_toolbar)
+        item = intent.getParcelableExtra(getString(R.string.bundle_extra_item))
         populateDetails(item)
+
     }
 
 
@@ -28,6 +32,19 @@ class PetDetailsActivity : AppCompatActivity() {
 
         zipTextView.text = "Zip: " + item?.zip
         detailsTextView.text = item?.details
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.details_menu, menu)
+        return true
+    }
+    fun shareButtonPressed(baritem: MenuItem) {
+        val sendIntent = Intent()
+        sendIntent.action = Intent.ACTION_SEND
+        val shareText = getString(R.string.share_message, item?.name, item?.email)
+        sendIntent.putExtra(Intent.EXTRA_TEXT, shareText)
+        sendIntent.type = "text/plain"
+        startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share)))
     }
 }
 

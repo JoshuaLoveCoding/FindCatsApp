@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:scaleType="fitCenter"
-            tools:src="@drawable/cat_1" />
+            android:src="@drawable/cat_1" />
 
         <TextView
             android:id="@+id/itemName"
@@ -28,8 +29,8 @@
             android:layout_below="@id/itemImage"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:gravity="center"
             android:maxLines="3"
+            android:gravity = "center"
             android:textSize="18sp"
             tools:text="@string/hint_name" />
 

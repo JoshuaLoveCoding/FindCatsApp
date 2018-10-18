@@ -55,21 +55,24 @@ class PetSearchManager {
                             val zips = item?.contact?.zip
                             val descriptions = item?.description
                             val ids = item?.id
-                            if (photos != null && names != null && sexs != null && zips != null && descriptions != null && ids != null) {
+                            val emails = item?.contact?.email
+                            if (photos != null && names != null && sexs != null && zips != null && descriptions != null && ids != null && emails != null) {
                                 val uri = photos[2]?.T
                                 val name = names?.T
                                 val sex = sexs?.T
                                 val zip = zips?.T
                                 val description = descriptions?.T
                                 val id = ids?.T
-                                if (uri != null && name != null && sex != null && zip != null && description != null && id != null) {
+                                val email = emails?.T
+                                if (uri != null && name != null && sex != null && zip != null && description != null && id != null && email != null) {
                                     catsList.add(
                                             Item(imageUri = uri,
                                                     name = name,
                                                     gender = sex,
                                                     zip = zip,
                                                     details = description,
-                                                    id = id
+                                                    id = id,
+                                                    email = email
                                             )
                                     )
                                 }

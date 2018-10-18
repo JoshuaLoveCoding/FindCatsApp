@@ -1,72 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PetDetailsActivity">
 
-    <ImageView
-        android:id="@+id/catImage"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cat_1" />
-
-    <TextView
-        android:id="@+id/nametextView"
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/catImage"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/hint_catname" />
-
-    <TextView
-        android:id="@+id/genderTextView"
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/catImage"
-        app:layout_constraintTop_toBottomOf="@+id/nametextView"
-        tools:text="@string/hint_gender" />
-
-    <TextView
-        android:id="@+id/zipTextView"
-        android:layout_width="155dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/catImage"
-        app:layout_constraintTop_toBottomOf="@+id/genderTextView"
-        tools:text="@string/hint_zip" />
-
-    <TextView
-        android:id="@+id/detailsTextView"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/menu_toolbar"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/catImage"
-        tools:text="@string/hint_details" />
+        android:layout_height="?android:attr/actionBarSize"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/catImage"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cat_1" />
+
+        <TextView
+            android:id="@+id/nametextView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/catImage"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/hint_catname" />
+
+        <TextView
+            android:id="@+id/genderTextView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/catImage"
+            app:layout_constraintTop_toBottomOf="@+id/nametextView"
+            tools:text="@string/hint_gender" />
+
+        <TextView
+            android:id="@+id/zipTextView"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/catImage"
+            app:layout_constraintTop_toBottomOf="@+id/genderTextView"
+            tools:text="@string/hint_zip" />
+
+        <TextView
+            android:id="@+id/detailsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catImage"
+            tools:text="@string/hint_details" />
+
+    </android.support.constraint.ConstraintLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

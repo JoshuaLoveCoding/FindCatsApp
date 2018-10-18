@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/sharp_favorite_border_white_18dp"
+        android:title="@string/favorite"
+        android:onClick="shareButtonPressed"
+        app:showAsAction="always"/>
+
+    <item
+        android:icon="@drawable/sharp_email_white_18dp"
+        android:title="@string/email"
+        android:onClick="shareButtonPressed"
+        app:showAsAction="always"/>
+
+    <item
+        android:icon="@drawable/sharp_launch_white_18dp"
+        android:title="@string/share"
+        android:onClick="shareButtonPressed"
+        app:showAsAction="always"/>
+</menu>
