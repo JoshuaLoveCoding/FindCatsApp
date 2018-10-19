@@ -41,10 +41,24 @@ class PetDetailsActivity : AppCompatActivity() {
     fun shareButtonPressed(baritem: MenuItem) {
         val sendIntent = Intent()
         sendIntent.action = Intent.ACTION_SEND
-        val shareText = getString(R.string.share_message, item?.name, item?.email)
+        val shareText = getString(R.string.share_message, item?.name, item?.email, item?.name, item?.imageUri)
         sendIntent.putExtra(Intent.EXTRA_TEXT, shareText)
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share)))
+    }
+    fun emailButtonPressed(emailitem: MenuItem) {
+        /* Create the Intent */
+        val emailIntent = Intent()
+        emailIntent.action = Intent.ACTION_SEND
+
+        /* Fill it with Data */
+        val title = getString(R.string.title_message, item?.name)
+        emailIntent.type = "text/plain"
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, item?.email)
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title)
+
+        /* Send it off to the Activity-Chooser */
+        startActivity(Intent.createChooser(emailIntent, resources.getText(R.string.email)))
     }
 }
 

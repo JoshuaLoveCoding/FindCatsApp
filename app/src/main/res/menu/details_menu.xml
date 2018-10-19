@@ -11,7 +11,7 @@
     <item
         android:icon="@drawable/sharp_email_white_18dp"
         android:title="@string/email"
-        android:onClick="shareButtonPressed"
+        android:onClick="emailButtonPressed"
         app:showAsAction="always"/>
 
     <item
