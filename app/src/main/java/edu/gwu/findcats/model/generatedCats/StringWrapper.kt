@@ -4,8 +4,4 @@ package edu.gwu.findcats.model.generatedCats
 import com.squareup.moshi.Json
 
 
-data class LastOffset(
-
-	@field:Json(name="\$t")
-	val T: String? = null
-)
+data class StringWrapper(@Json(name = "\$t") val t: String?) 
