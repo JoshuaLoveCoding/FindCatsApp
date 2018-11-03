@@ -2,38 +2,46 @@ package edu.gwu.findcats
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
+import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.View
-import edu.gwu.findcats.R
-import edu.gwu.findcats.Item
-import edu.gwu.findcats.ItemsAdapter
-import edu.gwu.findcats.DataProvider
 import kotlinx.android.synthetic.main.activity_favourite.*
-import kotlinx.android.synthetic.main.activity_menu.*
-
 
 class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
-
+    private lateinit var persistenceManager: PersistenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favourite)
-        populateItemList()
+        setSupportActionBar(favorite_toolbar)
+
+        val myfToolbar = findViewById(R.id.favorite_toolbar) as Toolbar
+        setSupportActionBar(myfToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
     }
 
-    private fun populateItemList() {
-        val items = DataProvider.favouriteList
-        if (items.isNotEmpty()) {
-            itemsRecyclerView_2.adapter = ItemsAdapter(items, this)
-        }
+    override fun onResume() {
+        super.onResume()
+        persistenceManager = PersistenceManager(this)
+        val items = persistenceManager.fetchItems()
+        populateItemList(items)
+    }
+
+    private fun populateItemList(items : List<Item>) {
+        itemsRecyclerView_2.adapter = ItemsAdapter(items, this)
     }
 
     override fun onItemClick(item: Item, itemView: View) {
         val detailsIntent = Intent(this, PetDetailsActivity::class.java)
         detailsIntent.putExtra(getString(R.string.bundle_extra_item), item)
         startActivity(detailsIntent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.favorite_menu, menu)
+        return true
     }
 
 }

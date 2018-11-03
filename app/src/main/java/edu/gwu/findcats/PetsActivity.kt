@@ -3,30 +3,49 @@ package edu.gwu.findcats
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.View
 import edu.gwu.findcats.model.PetSearchManager
 import kotlinx.android.synthetic.main.activity_pets.*
 import android.view.Menu
 import android.view.MenuItem
-
+import org.jetbrains.anko.toast
+import android.app.AlertDialog
+import android.view.LayoutInflater
+import kotlinx.android.synthetic.main.dialog_face.view.*
 
 class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetSearchManager.PetSearchCompletionListener {
     private lateinit var petSearchManager: PetSearchManager
+    private lateinit var persistenceManager: PersistenceManager
+    var zip1: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pets)
         setSupportActionBar(zip_toolbar)
+        persistenceManager = PersistenceManager(this)
 
         petSearchManager = PetSearchManager()
         petSearchManager.petSearchCompletionListener = this
 
-        populateItemList()
+        zip1 = persistenceManager.fetchZip()
+
+        populateItemList(zip1)
+
+        val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
+        setSupportActionBar(myToolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        myToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
     }
 
-    private fun populateItemList() {
-        petSearchManager.searchPets(22202)
+
+    private fun populateItemList(zip1: String?) {
+        if (zip1 == null) {
+            petSearchManager.searchPets("22202")
+            showInfo()
+        } else {
+            petSearchManager.searchPets(zip1)
+        }
     }
 
     override fun onItemClick(item: Item, itemView: View) {
@@ -36,12 +55,11 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
     }
 
     override fun petsNotLoaded() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        toast(R.string.petsNotLoaded)
     }
 
     override fun petsLoaded(catsList: List<Item>) {
         if (catsList.isNotEmpty()) {
-            itemsRecyclerView.layoutManager = LinearLayoutManager(this)
             itemsRecyclerView.adapter = ItemsAdapter(catsList, this)
         }
     }
@@ -50,11 +68,33 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
         menuInflater.inflate(R.menu.zip_menu, menu)
         return true
     }
-    fun shareButtonPressed(baritem: MenuItem) {
-        val sendIntent = Intent()
-        sendIntent.action = Intent.ACTION_SEND
-        sendIntent.type = "text/plain"
-        startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share)))
+
+    fun showInfo() {
+        val dialogTitle = getString(R.string.about_title)
+        val dialogMessage = getString(R.string.location_not_found)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(dialogTitle)
+        builder.setMessage(dialogMessage)
+        builder.create().show()
+    }
+
+
+    fun zipButtonPressed(baritem: MenuItem) {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_face, null)
+        val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
+        val mAlertDialog = mBuilder.show()
+
+        mDialogView.btnOk.setOnClickListener {
+            mAlertDialog.dismiss()
+            val zip = mDialogView.editText.text.toString()
+            petSearchManager.searchPets(zip)
+            persistenceManager.saveZip(zip)
+        }
+
+        mDialogView.btnCancel.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
     }
 
 }

@@ -19,8 +19,7 @@
             android:id="@+id/itemImage"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/cat_1" />
+            android:scaleType="fitCenter" />
 
         <TextView
             android:id="@+id/itemName"

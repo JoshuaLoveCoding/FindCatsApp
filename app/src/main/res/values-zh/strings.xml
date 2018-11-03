@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">找猫</string>
+    <string name="hint_name">名字</string>
+    <string name="hint_catname">姓名: %s</string>
+    <string name="hint_gender">性别: %s</string>
+    <string name="hint_breed">品种: %s</string>
+    <string name="hint_zip">区号: %s</string>
+    <string name="hint_details">详情</string>
+    <string name="bundle_extra_item">单品</string>
+    <string name="share">分享</string>
+    <string name="share_message">快来看看这只叫 %s 的猫！发这个 %s 的邮箱可以获取更多信息。叫 %s 的猫照片在这里： %s 。</string>
+    <string name="email">邮箱</string>
+    <string name="favorite">喜欢</string>
+    <string name="zip">区号</string>
+    <string name="title_message">我对您这只叫 %s 的猫很感兴趣。</string>
+    <string name="delete">这只猫已从您喜欢的猫列表里清除。</string>
+    <string name="save">已添加这只猫到您喜欢的猫列表里。</string>
+    <string name="petsNotLoaded">宠物数据加载失败，请核查区号输入是否正确。</string>
+    <string name="details_title">猫的详情</string>
+    <string name="nearby_title">附近的猫</string>
+    <string name="favorite_title">喜欢的猫</string>
+    <string name="find_a_cat">找猫</string>
+    <string name="favorite_cats">喜欢的猫</string>
+    <string name="find_a_cat_title">找猫</string>
+    <string name="cat_fact">猫的事实：</string>
+    <string name="input_zip">请在这里输入区号。</string>
+    <string name="permissions_granted">位置许可已获批准。</string>
+    <string name="permissions_denied">位置许可被拒绝。</string>
+    <string name="location_not_found">位置无法找到。系统尝试使用先前或默认位置。您可在"附近的猫"页面手动输入区号找猫。</string>
+    <string name="no_location_permission">无位置许可。</string>
+    <string name="about_title">正在获取位置</string>
+    <string name="about_message">等待几秒钟，然后点击对话框外的任何区域，对话框就会消失。</string>
+    <string name="input_hint">区号应该为5位数，例如22202。</string>
+    <string name="factNotLoaded">猫事实没有加载成功，请检查网络。</string>
+</resources>

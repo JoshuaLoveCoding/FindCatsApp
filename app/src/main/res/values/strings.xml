@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">FindCats</string>
     <string name="hint_name">Name</string>
-    <string name="hint_catname">CatName</string>
-    <string name="hint_gender">Gender</string>
-    <string name="hint_breed">Breed</string>
-    <string name="hint_zip">Zip</string>
+    <string name="hint_catname">Name: %s</string>
+    <string name="hint_gender">Gender: %s</string>
+    <string name="hint_breed">Breed: %s</string>
+    <string name="hint_zip">Zip: %s</string>
     <string name="hint_details">Details</string>
     <string name="bundle_extra_item">ITEM</string>
     <string name="share">Share</string>
@@ -13,4 +13,23 @@
     <string name="favorite">Favorite</string>
     <string name="zip">Zip</string>
     <string name="title_message">I’m interested in your cat named %s.</string>
+    <string name="delete">Remove this cat from your Favorite Cats list.</string>
+    <string name="save">Add this cat to your Favorite Cats list.</string>
+    <string name="petsNotLoaded">Pet data failed to load, please check if the zip code input is correct.</string>
+    <string name="details_title">Cat Details</string>
+    <string name="nearby_title">Nearby Cats</string>
+    <string name="favorite_title">Favorite Cats</string>
+    <string name="find_a_cat">Find a Cat</string>
+    <string name="favorite_cats">Favorite Cats</string>
+    <string name="find_a_cat_title">Find a Cat</string>
+    <string name="cat_fact">Cat Fact:</string>
+    <string name="input_zip">Please enter zip code here.</string>
+    <string name="permissions_granted">Location permission approved.</string>
+    <string name="permissions_denied">Location permission denied.</string>
+    <string name="location_not_found">Location couldn\'t be found. The system attempts to use the previous or default location. You can manually enter zip code to find cats on "Nearby Cats" page.</string>
+    <string name="no_location_permission">No location permission.</string>
+    <string name="about_title">Getting the location</string>
+    <string name="about_message">Wait a few seconds, then tap any area outside the Dialog and the Dialog will disappear.</string>
+    <string name="input_hint">The zip code should be 5 digits, such as 22202.</string>
+    <string name="factNotLoaded">The cat fact is not loaded, please check the network.</string>
 </resources>

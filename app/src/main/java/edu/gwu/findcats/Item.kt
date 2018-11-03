@@ -5,11 +5,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class Item(
-        var imageUri: String,
-        var name: String,
-        var gender: String,
-        var zip: String,
-        var details: String,
-        var id: String,
-        var email: String
+        var imageUri: String?,
+        var name: String?,
+        var gender: String?,
+        var zip: String?,
+        var details: String?,
+        var id: String?,
+        var email: String?,
+        var breed: String?
 ) : Parcelable

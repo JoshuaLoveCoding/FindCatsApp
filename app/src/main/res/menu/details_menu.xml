@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/sharp_favorite_border_white_18dp"
+        android:icon="@drawable/sharp_favorite_white_18dp"
         android:title="@string/favorite"
-        android:onClick="shareButtonPressed"
+        android:onClick="favoriteButtonPressed"
         app:showAsAction="always"/>
 
     <item
@@ -19,4 +19,5 @@
         android:title="@string/share"
         android:onClick="shareButtonPressed"
         app:showAsAction="always"/>
+
 </menu>

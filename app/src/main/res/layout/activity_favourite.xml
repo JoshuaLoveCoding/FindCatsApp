@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PetsActivity">
+    android:orientation="vertical"
+    tools:context=".FavouriteActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/itemsRecyclerView_2"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/favorite_toolbar"
+        android:background="@color/colorPrimary"
+        app:title="@string/favorite_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
-        app:spanCount="2" />
+        android:layout_height="?android:attr/actionBarSize"/>
 
-</android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/itemsRecyclerView_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:spanCount="2" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

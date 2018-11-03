@@ -1,12 +1,9 @@
 package edu.gwu.findcats.model
 
 import android.content.Context
-import android.content.res.Configuration
-import android.net.Uri
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
 import edu.gwu.findcats.model.generatedFacts.FactsResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,8 +11,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Query
 
 class FactsManager(private val context: Context, private val textView: TextView) {
 
@@ -52,6 +47,7 @@ class FactsManager(private val context: Context, private val textView: TextView)
                     val fact = factsResponseBody.fact
 
                     textView.text = fact
+                    textView.setMovementMethod(ScrollingMovementMethod())
 
                 } else {
                     factsSearchCompletionListener?.factsNotLoaded()
