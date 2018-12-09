@@ -34,7 +34,7 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
 
         val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         myToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
     }
 

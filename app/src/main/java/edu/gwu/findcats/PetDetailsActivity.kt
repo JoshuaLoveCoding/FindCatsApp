@@ -27,7 +27,7 @@ class PetDetailsActivity : AppCompatActivity() {
 
         val mToolbar = findViewById(R.id.menu_toolbar) as Toolbar
         setSupportActionBar(mToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         mToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
 
     }
@@ -64,7 +64,8 @@ class PetDetailsActivity : AppCompatActivity() {
         // Fill it with Data
         val title = getString(R.string.title_message, item?.name)
         emailIntent.type = "text/plain"
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, item?.email)
+        val aEmailList = arrayOf(item?.email)
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList)
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title)
 
         // Send it off to the Activity-Chooser

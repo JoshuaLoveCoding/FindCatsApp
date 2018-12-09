@@ -18,7 +18,7 @@ class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
 
         val myfToolbar = findViewById(R.id.favorite_toolbar) as Toolbar
         setSupportActionBar(myfToolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
     }
 
