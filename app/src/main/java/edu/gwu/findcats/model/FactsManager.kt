@@ -18,6 +18,7 @@ class FactsManager(private val context: Context, private val textView: TextView)
     var factsSearchCompletionListener: FactsSearchCompletionListener? = null
 
     interface FactsSearchCompletionListener {
+        fun factsLoaded(cFact: String)
         fun factsNotLoaded()
     }
 
@@ -45,10 +46,12 @@ class FactsManager(private val context: Context, private val textView: TextView)
 
                 if (factsResponseBody != null) {
                     val fact = factsResponseBody.fact
-
-                    textView.text = fact
-                    textView.setMovementMethod(ScrollingMovementMethod())
-
+                    if (fact != null) {
+                        factsSearchCompletionListener?.factsLoaded(fact)
+                        return
+                    }
+                    //textView.text = fact
+                    //textView.setMovementMethod(ScrollingMovementMethod())
                 } else {
                     factsSearchCompletionListener?.factsNotLoaded()
                 }

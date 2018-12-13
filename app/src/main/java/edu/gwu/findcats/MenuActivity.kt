@@ -14,13 +14,16 @@ import org.jetbrains.anko.toast
 import android.location.Location
 import android.location.Geocoder
 import android.support.v7.app.AlertDialog
+import android.text.method.ScrollingMovementMethod
 import java.util.*
 
 class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionListener, LocationDetector.LocationListener {
+
     private lateinit var factsManager: FactsManager
     private val LOCATION_PERMISSION_REQUEST_CODE = 7
     private lateinit var locationDetector: LocationDetector
     private lateinit var persistenceManager: PersistenceManager
+    private var catFact: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +33,21 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
         persistenceManager = PersistenceManager(this)
         locationDetector = LocationDetector(this)
         locationDetector.locationListener = this
-        factsManager.searchFacts()
+        if (savedInstanceState == null) {
+            factsManager.searchFacts()
+        }
         requestPermissionsIfNecessary()
+        if (savedInstanceState != null) {
+            catFact = savedInstanceState.getString("fact")
+            factTextView.text = catFact
+            factTextView.setMovementMethod(ScrollingMovementMethod())
+        }
+    }
+
+    @Override
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putString("fact", catFact)
     }
 
     private fun requestPermissionsIfNecessary() {
@@ -73,6 +89,11 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
         startActivity(intent2)
     }
 
+    override fun factsLoaded(cFact: String) {
+        catFact = cFact
+        factTextView.text = catFact
+        factTextView.setMovementMethod(ScrollingMovementMethod())
+    }
 
     override fun factsNotLoaded() {
         toast(R.string.factNotLoaded)
