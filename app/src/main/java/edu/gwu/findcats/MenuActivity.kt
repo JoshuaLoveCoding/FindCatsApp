@@ -18,6 +18,7 @@ import android.text.method.ScrollingMovementMethod
 import java.util.*
 
 class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionListener, LocationDetector.LocationListener {
+
     private lateinit var factsManager: FactsManager
     private val LOCATION_PERMISSION_REQUEST_CODE = 7
     private lateinit var locationDetector: LocationDetector
