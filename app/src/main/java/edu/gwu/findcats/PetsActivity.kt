@@ -14,7 +14,7 @@ import android.app.AlertDialog
 import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.dialog_face.view.*
 
-class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetSearchManager.PetSearchCompletionListener {
+class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSearchManager.PetSearchCompletionListener {
     private lateinit var petSearchManager: PetSearchManager
     private lateinit var persistenceManager: PersistenceManager
     var zip1: String? = null
@@ -30,7 +30,7 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
 
         zip1 = persistenceManager.fetchZip()
 
-        populateItemList(zip1)
+        populatePetList(zip1)
 
         val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
@@ -39,7 +39,7 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
     }
 
 
-    private fun populateItemList(zip1: String?) {
+    private fun populatePetList(zip1: String?) {
         if (zip1 == null) {
             petSearchManager.searchPets("22202")
             showInfo()
@@ -48,9 +48,9 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
         }
     }
 
-    override fun onItemClick(item: Item, itemView: View) {
+    override fun onPetClick(pet: Pet, petView: View) {
         val detailsIntent = Intent(this, PetDetailsActivity::class.java)
-        detailsIntent.putExtra(getString(R.string.bundle_extra_item), item)
+        detailsIntent.putExtra(getString(R.string.bundle_extra_pet), pet)
         startActivity(detailsIntent)
     }
 
@@ -58,9 +58,9 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
         toast(R.string.petsNotLoaded)
     }
 
-    override fun petsLoaded(catsList: List<Item>) {
+    override fun petsLoaded(catsList: List<Pet>) {
         if (catsList.isNotEmpty()) {
-            itemsRecyclerView.adapter = ItemsAdapter(catsList, this)
+            petsRecyclerView.adapter = PetsAdapter(catsList, this)
         }
     }
 
@@ -79,7 +79,7 @@ class PetsActivity : AppCompatActivity(), ItemsAdapter.OnItemClickListener, PetS
     }
 
 
-    fun zipButtonPressed(baritem: MenuItem) {
+    fun zipButtonPressed(barpet: MenuItem) {
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.dialog_face, null)
         val mBuilder = AlertDialog.Builder(this).setView(mDialogView)
         val mAlertDialog = mBuilder.show()

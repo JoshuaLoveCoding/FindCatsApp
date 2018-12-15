@@ -7,7 +7,7 @@
     <string name="hint_breed">品种: %s</string>
     <string name="hint_zip">区号: %s</string>
     <string name="hint_details">详情</string>
-    <string name="bundle_extra_item">单品</string>
+    <string name="bundle_extra_pet">宠物</string>
     <string name="share">分享</string>
     <string name="share_message">快来看看这只叫 %s 的猫！发这个 %s 的邮箱可以获取更多信息。叫 %s 的猫照片在这里： %s 。</string>
     <string name="email">邮箱</string>

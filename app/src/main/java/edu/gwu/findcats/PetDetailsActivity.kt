@@ -14,15 +14,15 @@ import org.jetbrains.anko.toast
 
 class PetDetailsActivity : AppCompatActivity() {
     private lateinit var persistenceManager: PersistenceManager
-    private var item: Item? = null
+    private var pet: Pet? = null
     var imageView: ImageView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pet_details)
         setSupportActionBar(menu_toolbar)
-        item = intent.getParcelableExtra(getString(R.string.bundle_extra_item))
+        pet = intent.getParcelableExtra(getString(R.string.bundle_extra_pet))
         imageView = findViewById(R.id.catImage)
-        populateDetails(item)
+        populateDetails(pet)
         persistenceManager = PersistenceManager(this)
 
         val mToolbar = findViewById(R.id.menu_toolbar) as Toolbar
@@ -33,14 +33,14 @@ class PetDetailsActivity : AppCompatActivity() {
     }
 
 
-    private fun populateDetails(item: Item?) {
-        var url: String? = item?.imageUri
+    private fun populateDetails(pet: Pet?) {
+        var url: String? = pet?.imageUri
         Picasso.with(this).load(url).into(imageView)
-        nametextView.text = getString(R.string.hint_catname, item?.name)
-        genderTextView.text = getString(R.string.hint_gender, item?.gender)
-        breedTextView.text = getString(R.string.hint_breed, item?.breed)
-        zipTextView.text = getString(R.string.hint_zip, item?.zip)
-        detailsTextView.text = item?.details
+        nametextView.text = getString(R.string.hint_catname, pet?.name)
+        genderTextView.text = getString(R.string.hint_gender, pet?.gender)
+        breedTextView.text = getString(R.string.hint_breed, pet?.breed)
+        zipTextView.text = getString(R.string.hint_zip, pet?.zip)
+        detailsTextView.text = pet?.details
         detailsTextView.setMovementMethod(ScrollingMovementMethod())
     }
 
@@ -48,23 +48,23 @@ class PetDetailsActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.details_menu, menu)
         return true
     }
-    fun shareButtonPressed(baritem: MenuItem) {
+    fun shareButtonPressed(barpet: MenuItem) {
         val sendIntent = Intent()
         sendIntent.action = Intent.ACTION_SEND
-        val shareText = getString(R.string.share_message, item?.name, item?.email, item?.name, item?.imageUri)
+        val shareText = getString(R.string.share_message, pet?.name, pet?.email, pet?.name, pet?.imageUri)
         sendIntent.putExtra(Intent.EXTRA_TEXT, shareText)
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share)))
     }
-    fun emailButtonPressed(emailitem: MenuItem) {
+    fun emailButtonPressed(emailpet: MenuItem) {
         // Create the Intent
         val emailIntent = Intent()
         emailIntent.action = Intent.ACTION_SEND
 
         // Fill it with Data
-        val title = getString(R.string.title_message, item?.name)
+        val title = getString(R.string.title_message, pet?.name)
         emailIntent.type = "text/plain"
-        val aEmailList = arrayOf(item?.email)
+        val aEmailList = arrayOf(pet?.email)
         emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, aEmailList)
         emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title)
 
@@ -72,22 +72,22 @@ class PetDetailsActivity : AppCompatActivity() {
         startActivity(Intent.createChooser(emailIntent, resources.getText(R.string.email)))
     }
 
-    fun favoriteButtonPressed(favitem: MenuItem) {
-        val items = persistenceManager.fetchItems().toMutableList()
+    fun favoriteButtonPressed(favpet: MenuItem) {
+        val pets = persistenceManager.fetchPets().toMutableList()
         var index = 0
-        val len = items.size
-        for (a in items) {
-            if (a.id == item?.id) {
-                persistenceManager.deleteItem(index)
+        val len = pets.size
+        for (a in pets) {
+            if (a.id == pet?.id) {
+                persistenceManager.deletePet(index)
                 toast(R.string.delete)
                 break
             }
             index++
         }
-        val items2 = persistenceManager.fetchItems().toMutableList()
-        val len2 = items2.size
+        val pets2 = persistenceManager.fetchPets().toMutableList()
+        val len2 = pets2.size
         if (len2 == len) {
-            persistenceManager.saveItem(item)
+            persistenceManager.savePet(pet)
             toast(R.string.save)
         }
     }

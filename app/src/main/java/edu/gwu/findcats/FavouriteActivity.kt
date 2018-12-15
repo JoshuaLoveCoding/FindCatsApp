@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.View
 import kotlinx.android.synthetic.main.activity_favourite.*
 
-class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
+class FavouriteActivity : AppCompatActivity(),PetsAdapter.OnPetClickListener {
     private lateinit var persistenceManager: PersistenceManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,17 +25,17 @@ class FavouriteActivity : AppCompatActivity(),ItemsAdapter.OnItemClickListener {
     override fun onResume() {
         super.onResume()
         persistenceManager = PersistenceManager(this)
-        val items = persistenceManager.fetchItems()
-        populateItemList(items)
+        val pets = persistenceManager.fetchPets()
+        populatePetList(pets)
     }
 
-    private fun populateItemList(items : List<Item>) {
-        itemsRecyclerView_2.adapter = ItemsAdapter(items, this)
+    private fun populatePetList(pets : List<Pet>) {
+        petsRecyclerView_2.adapter = PetsAdapter(pets, this)
     }
 
-    override fun onItemClick(item: Item, itemView: View) {
+    override fun onPetClick(pet: Pet, petView: View) {
         val detailsIntent = Intent(this, PetDetailsActivity::class.java)
-        detailsIntent.putExtra(getString(R.string.bundle_extra_item), item)
+        detailsIntent.putExtra(getString(R.string.bundle_extra_pet), pet)
         startActivity(detailsIntent)
     }
 

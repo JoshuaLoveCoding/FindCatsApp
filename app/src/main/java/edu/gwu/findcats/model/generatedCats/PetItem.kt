@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 
 
-data class PetItem(
+data class PetCat(
 		@Json(name = "contact") val contact: Contact,
 		@Json(name = "media") val media: Media,
 		@Json(name = "id") val id: StringWrapper,

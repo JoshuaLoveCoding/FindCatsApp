@@ -30,53 +30,53 @@ class PersistenceManager(private val context: Context) {
 
     }
 
-    fun saveItem(item: Item?) {
+    fun savePet(pet: Pet?) {
 
-        val items = fetchItems().toMutableList()
-        val item = Item(item?.imageUri, item?.name, item?.gender, item?.zip, item?.details, item?.id, item?.email, item?.breed)
+        val pets = fetchPets().toMutableList()
+        val pet = Pet(pet?.imageUri, pet?.name, pet?.gender, pet?.zip, pet?.details, pet?.id, pet?.email, pet?.breed)
 
-        items.add(item)
+        pets.add(pet)
 
         val editor = sharedPreferences.edit()
 
         val moshi = Moshi.Builder().build()
-        val listType = Types.newParameterizedType(List::class.java, Item::class.java)
-        val jsonAdapter = moshi.adapter<List<Item>>(listType)
-        val jsonString = jsonAdapter.toJson(items)
+        val listType = Types.newParameterizedType(List::class.java, Pet::class.java)
+        val jsonAdapter = moshi.adapter<List<Pet>>(listType)
+        val jsonString = jsonAdapter.toJson(pets)
 
-        editor.putString(Constants.ITEM_PREF_KEY, jsonString)
+        editor.putString(Constants.PET_PREF_KEY, jsonString)
 
         editor.apply()
 
     }
 
-    fun fetchItems(): List<Item> {
+    fun fetchPets(): List<Pet> {
 
-        val jsonString = sharedPreferences.getString(Constants.ITEM_PREF_KEY, null)
+        val jsonString = sharedPreferences.getString(Constants.PET_PREF_KEY, null)
 
         //if null, this means no previous scores, so create an empty array list
         if(jsonString == null) {
-            return arrayListOf<Item>()
+            return arrayListOf<Pet>()
         }
         else {
             //existing scores, so convert the scores JSON string into Score objects, using Moshi
-            val listType = Types.newParameterizedType(List::class.java, Item::class.java)
+            val listType = Types.newParameterizedType(List::class.java, Pet::class.java)
             val moshi = Moshi.Builder()
                     .build()
-            val jsonAdapter = moshi.adapter<List<Item>>(listType)
+            val jsonAdapter = moshi.adapter<List<Pet>>(listType)
 
-            var items:List<Item>? = emptyList<Item>()
+            var pets:List<Pet>? = emptyList<Pet>()
             try {
-                items = jsonAdapter.fromJson(jsonString)
+                pets = jsonAdapter.fromJson(jsonString)
             } catch (e: IOException) {
                 Log.e(ContentValues.TAG, e.message)
             }
 
-            if(items != null) {
-                return items
+            if(pets != null) {
+                return pets
             }
             else {
-                return emptyList<Item>()
+                return emptyList<Pet>()
             }
         }
     }
@@ -89,20 +89,20 @@ class PersistenceManager(private val context: Context) {
 
     }
 
-    fun deleteItem(index: Int) {
+    fun deletePet(index: Int) {
 
-        val items = fetchItems().toMutableList()
+        val pets = fetchPets().toMutableList()
 
-        items.removeAt(index)
+        pets.removeAt(index)
 
         val editor = sharedPreferences.edit()
 
         val moshi = Moshi.Builder().build()
-        val listType = Types.newParameterizedType(List::class.java, Item::class.java)
-        val jsonAdapter = moshi.adapter<List<Item>>(listType)
-        val jsonString = jsonAdapter.toJson(items)
+        val listType = Types.newParameterizedType(List::class.java, Pet::class.java)
+        val jsonAdapter = moshi.adapter<List<Pet>>(listType)
+        val jsonString = jsonAdapter.toJson(pets)
 
-        editor.putString(Constants.ITEM_PREF_KEY, jsonString)
+        editor.putString(Constants.PET_PREF_KEY, jsonString)
 
         editor.apply()
 

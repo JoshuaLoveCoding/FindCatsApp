@@ -1,6 +1,6 @@
 package edu.gwu.findcats.model
 
-import edu.gwu.findcats.Item
+import edu.gwu.findcats.Pet
 import android.util.Log
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
@@ -22,7 +22,7 @@ class PetSearchManager {
     var petSearchCompletionListener: PetSearchCompletionListener? = null
 
     interface PetSearchCompletionListener {
-        fun petsLoaded(cats: List<Item>)
+        fun petsLoaded(cats: List<Pet>)
         fun petsNotLoaded()
     }
 
@@ -36,7 +36,7 @@ class PetSearchManager {
                 .add(ObjectAsListJsonAdapterFactory())
                 .add(KotlinJsonAdapterFactory())
                 .build()
-        var catsList = mutableListOf<Item>()
+        var catsList = mutableListOf<Pet>()
         val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.CATS_SEARCH_URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -54,16 +54,16 @@ class PetSearchManager {
                 val petsResponseBody = response.body()
 
                 petsResponseBody?.petfinder?.pets?.pet?.let {
-                    for (item in it) {
+                    for (pet in it) {
                         catsList.add(
-                                Item(imageUri = item.media.photos.photo[2].t,
-                                        name = item.name.t,
-                                        gender = item.sex.t,
-                                        zip = item.contact.zip.t,
-                                        details = item.description.t,
-                                        id = item.id.t,
-                                        email = item.contact.email.t,
-                                        breed = item.breeds.breed[0].t
+                                Pet(imageUri = pet.media.photos.photo[2].t,
+                                        name = pet.name.t,
+                                        gender = pet.sex.t,
+                                        zip = pet.contact.zip.t,
+                                        details = pet.description.t,
+                                        id = pet.id.t,
+                                        email = pet.contact.email.t,
+                                        breed = pet.breeds.breed[0].t
                                 )
                         )
                     }
