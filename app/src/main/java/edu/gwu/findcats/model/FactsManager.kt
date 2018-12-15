@@ -46,12 +46,20 @@ class FactsManager(private val context: Context, private val textView: TextView)
 
                 if (factsResponseBody != null) {
                     val fact = factsResponseBody.fact
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1561dba3f34c598a165b261d2c7f6c036ca081da
                     if (fact != null) {
                         factsSearchCompletionListener?.factsLoaded(fact)
                         return
                     }
+<<<<<<< HEAD
 
+=======
+                    //textView.text = fact
+                    //textView.setMovementMethod(ScrollingMovementMethod())
+>>>>>>> 1561dba3f34c598a165b261d2c7f6c036ca081da
                 } else {
                     factsSearchCompletionListener?.factsNotLoaded()
                 }
