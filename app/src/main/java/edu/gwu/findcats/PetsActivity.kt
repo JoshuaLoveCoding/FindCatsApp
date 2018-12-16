@@ -11,12 +11,22 @@ import android.view.Menu
 import android.view.MenuItem
 import org.jetbrains.anko.toast
 import android.app.AlertDialog
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import kotlinx.android.synthetic.main.dialog_face.view.*
+import java.util.*
 
-class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSearchManager.PetSearchCompletionListener {
+class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSearchManager.PetSearchCompletionListener, LocationDetector.LocationListener {
+
     private lateinit var petSearchManager: PetSearchManager
     private lateinit var persistenceManager: PersistenceManager
+    private val LOCATION_PERMISSION_REQUEST_CODE = 7
+    private lateinit var locationDetector: LocationDetector
     var zip1: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +38,12 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
         petSearchManager = PetSearchManager()
         petSearchManager.petSearchCompletionListener = this
 
+        locationDetector = LocationDetector(this)
+        locationDetector.locationListener = this
+
         zip1 = persistenceManager.fetchZip()
 
-        populatePetList(zip1)
+        requestPermissionsIfNecessary()
 
         val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
@@ -38,6 +51,24 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
         myToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
     }
 
+    private fun requestPermissionsIfNecessary() {
+        val permission = ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+        if(permission == PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        } else {
+            populatePetList(zip1)
+            toast(R.string.permissions_denied)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if(grantResults.isNotEmpty() && grantResults.first() == PackageManager.PERMISSION_GRANTED) {
+                locationDetector.detectLocation()
+            }
+        }
+    }
 
     private fun populatePetList(zip1: String?) {
         if (zip1 == null) {
@@ -95,6 +126,24 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
             mAlertDialog.dismiss()
         }
 
+    }
+
+    override fun locationFound(location: Location) {
+        val geocoder: Geocoder
+        val addresses: List<Address>
+        geocoder = Geocoder(this, Locale.getDefault())
+        addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
+        val postalCode = addresses[0].getPostalCode()
+        zip1 = postalCode
+        populatePetList(zip1)
+    }
+
+    override fun locationNotFound(reason: LocationDetector.FailureReason) {
+        populatePetList(zip1)
+        when (reason) {
+            LocationDetector.FailureReason.TIMEOUT -> toast(getString(R.string.location_not_found))
+            LocationDetector.FailureReason.NO_PERMISSION -> toast(getString(R.string.no_location_permission))
+        }
     }
 
 }

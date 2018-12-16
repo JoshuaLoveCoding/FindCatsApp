@@ -28,7 +28,8 @@
     <string name="permissions_denied">Location permission denied.</string>
     <string name="location_not_found">Location couldn\'t be found. The system attempts to use the previous or default location. You can manually enter zip code to find cats on "Nearby Cats" page.</string>
     <string name="no_location_permission">No location permission.</string>
-    <string name="about_title">Getting the location</string>
+    <string name="about_title">Get the location failed</string>
+    <string name="about_title1">Get the location successfully</string>
     <string name="about_message">Wait a few seconds, then tap any area outside the Dialog and the Dialog will disappear.</string>
     <string name="input_hint">The zip code should be 5 digits, such as 22202.</string>
     <string name="factNotLoaded">The cat fact is not loaded, please check the network.</string>

@@ -56,6 +56,7 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         }
     }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
@@ -71,7 +72,7 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
     }
 
     fun showInfo() {
-        val dialogTitle = getString(R.string.about_title)
+        val dialogTitle = getString(R.string.about_title1)
         val dialogMessage = getString(R.string.about_message)
         val builder = AlertDialog.Builder(this)
         builder.setTitle(dialogTitle)

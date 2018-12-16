@@ -29,7 +29,8 @@
     <string name="permissions_denied">位置许可被拒绝。</string>
     <string name="location_not_found">位置无法找到。系统尝试使用先前或默认位置。您可在"附近的猫"页面手动输入区号找猫。</string>
     <string name="no_location_permission">无位置许可。</string>
-    <string name="about_title">正在获取位置</string>
+    <string name="about_title">获取位置失败</string>
+    <string name="about_title1">获取位置成功</string>
     <string name="about_message">等待几秒钟，然后点击对话框外的任何区域，对话框就会消失。</string>
     <string name="input_hint">区号应该为5位数，例如22202。</string>
     <string name="factNotLoaded">猫事实没有加载成功，请检查网络。</string>
