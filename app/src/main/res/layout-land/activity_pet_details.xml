@@ -28,10 +28,9 @@
 
         <TextView
             android:id="@+id/nametextView"
-            android:layout_width="155dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:text="TextView"
             android:textSize="14sp"
@@ -41,10 +40,9 @@
 
         <TextView
             android:id="@+id/genderTextView"
-            android:layout_width="155dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textSize="14sp"
@@ -54,10 +52,9 @@
 
         <TextView
             android:id="@+id/breedTextView"
-            android:layout_width="155dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textSize="14sp"
@@ -67,10 +64,9 @@
 
         <TextView
             android:id="@+id/zipTextView"
-            android:layout_width="155dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:text="TextView"
             android:textSize="14sp"
@@ -81,12 +77,10 @@
         <TextView
             android:id="@+id/detailsTextView"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="70dp"
             android:layout_margin="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:scrollbars="vertical"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
