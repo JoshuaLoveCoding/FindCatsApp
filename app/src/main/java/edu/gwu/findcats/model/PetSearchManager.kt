@@ -29,7 +29,7 @@ class PetSearchManager {
     interface ApiEndpointInterface {
         @GET("pet.find")
         fun findPets(@Query("key") key: String, @Query("format") format: String, @Query("animal") animal: String, @Query("location") location: String): Call<PetFinderResponse>
-    }
+    }//add all parameters needed in the url
 
     fun searchPets(query: String) {
         val moshi = Moshi.Builder()

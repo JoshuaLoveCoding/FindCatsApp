@@ -43,7 +43,13 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
 
         zip1 = persistenceManager.fetchZip()
 
-        requestPermissionsIfNecessary()
+        if (savedInstanceState == null) {
+            requestPermissionsIfNecessary()
+        }
+
+        if (savedInstanceState != null) {
+            populatePetList(zip1)
+        }
 
         val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
@@ -118,7 +124,7 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
         mDialogView.btnOk.setOnClickListener {
             mAlertDialog.dismiss()
             val zip = mDialogView.editText.text.toString()
-            petSearchManager.searchPets(zip)
+            populatePetList(zip)
             persistenceManager.saveZip(zip)
         }
 
@@ -136,6 +142,7 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
         val postalCode = addresses[0].getPostalCode()
         zip1 = postalCode
         populatePetList(zip1)
+        persistenceManager.saveZip(zip1)
     }
 
     override fun locationNotFound(reason: LocationDetector.FailureReason) {
