@@ -36,7 +36,7 @@ class PetSearchManager {
                 .add(ObjectAsListJsonAdapterFactory())
                 .add(KotlinJsonAdapterFactory())
                 .build()
-        var catsList = mutableListOf<Pet>()
+        var catsList = mutableListOf<Pet>()//initiate the result list
         val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.CATS_SEARCH_URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
