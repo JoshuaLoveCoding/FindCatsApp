@@ -9,7 +9,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.activity_favourite.*
 
 class FavouriteActivity : AppCompatActivity(),PetsAdapter.OnPetClickListener {
-    private lateinit var persistenceManager: PersistenceManager
+    private lateinit var persistenceManager: PersistenceManager//initiate PersistenceManager to keep the data
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,18 +19,18 @@ class FavouriteActivity : AppCompatActivity(),PetsAdapter.OnPetClickListener {
         val myfToolbar = findViewById(R.id.favorite_toolbar) as Toolbar
         setSupportActionBar(myfToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
+        myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })//show scrollable bar
     }
 
     override fun onResume() {
         super.onResume()
         persistenceManager = PersistenceManager(this)
-        val pets = persistenceManager.fetchPets()
+        val pets = persistenceManager.fetchPets()//fetch favorites list
         populatePetList(pets)
     }
 
     private fun populatePetList(pets : List<Pet>) {
-        petsRecyclerView_2.adapter = PetsAdapter(pets, this)
+        petsRecyclerView_2.adapter = PetsAdapter(pets, this)//show data
     }
 
     override fun onPetClick(pet: Pet, petView: View) {
