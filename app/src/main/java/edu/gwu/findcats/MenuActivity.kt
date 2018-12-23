@@ -40,7 +40,7 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
         if (savedInstanceState != null) {
             catFact = savedInstanceState.getString("fact")
             factTextView.text = catFact
-            factTextView.setMovementMethod(ScrollingMovementMethod())
+            factTextView.setMovementMethod(ScrollingMovementMethod())//show scrollable bar
         }
     }
 
@@ -55,7 +55,7 @@ class MenuActivity : AppCompatActivity(), FactsManager.FactsSearchCompletionList
         if(permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         }
-    }
+    }//request location permission
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
