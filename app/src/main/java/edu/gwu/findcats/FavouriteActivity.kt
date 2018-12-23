@@ -19,7 +19,7 @@ class FavouriteActivity : AppCompatActivity(),PetsAdapter.OnPetClickListener {
         val myfToolbar = findViewById(R.id.favorite_toolbar) as Toolbar
         setSupportActionBar(myfToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })//show scrollable bar
+        myfToolbar.setNavigationOnClickListener({ view -> onBackPressed() })//show back listener
     }
 
     override fun onResume() {

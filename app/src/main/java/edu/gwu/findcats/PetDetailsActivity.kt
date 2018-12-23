@@ -28,7 +28,7 @@ class PetDetailsActivity : AppCompatActivity() {
         val mToolbar = findViewById(R.id.menu_toolbar) as Toolbar
         setSupportActionBar(mToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        mToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
+        mToolbar.setNavigationOnClickListener({ view -> onBackPressed() })//show back listener
 
     }
 
@@ -41,7 +41,7 @@ class PetDetailsActivity : AppCompatActivity() {
         breedTextView.text = getString(R.string.hint_breed, pet?.breed)
         zipTextView.text = getString(R.string.hint_zip, pet?.zip)
         detailsTextView.text = pet?.details
-        detailsTextView.setMovementMethod(ScrollingMovementMethod())
+        detailsTextView.setMovementMethod(ScrollingMovementMethod())//show scrollable bar
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -55,7 +55,7 @@ class PetDetailsActivity : AppCompatActivity() {
         sendIntent.putExtra(Intent.EXTRA_TEXT, shareText)
         sendIntent.type = "text/plain"
         startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share)))
-    }
+    }//text share
     fun emailButtonPressed(emailpet: MenuItem) {
         // Create the Intent
         val emailIntent = Intent()
@@ -70,7 +70,7 @@ class PetDetailsActivity : AppCompatActivity() {
 
         // Send it off to the Activity-Chooser
         startActivity(Intent.createChooser(emailIntent, resources.getText(R.string.email)))
-    }
+    }//email share
 
     fun favoriteButtonPressed(favpet: MenuItem) {
         val pets = persistenceManager.fetchPets().toMutableList()
@@ -90,7 +90,7 @@ class PetDetailsActivity : AppCompatActivity() {
             persistenceManager.savePet(pet)
             toast(R.string.save)
         }
-    }
+    }//favorite button
 
 
 }

@@ -54,7 +54,7 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
         val myToolbar = findViewById(R.id.zip_toolbar) as Toolbar
         setSupportActionBar(myToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        myToolbar.setNavigationOnClickListener({ view -> onBackPressed() })
+        myToolbar.setNavigationOnClickListener({ view -> onBackPressed() })//show back listener
     }
 
     private fun requestPermissionsIfNecessary() {
@@ -65,7 +65,7 @@ class PetsActivity : AppCompatActivity(), PetsAdapter.OnPetClickListener, PetSea
             populatePetList(zip1)
             toast(R.string.permissions_denied)
         }
-    }
+    }//location permission result
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
